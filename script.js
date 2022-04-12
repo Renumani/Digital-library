@@ -6,7 +6,6 @@ userInput.addEventListener("keyup", function (e) {
 });
 async function fnOpenBook() {
   //API FOR SEARCH
-  //document.getElementById("loading").style.display = "block";
   var response = await fetch(
     "https://openlibrary.org/search.json?q=" + userInput.value
   );
@@ -14,12 +13,10 @@ async function fnOpenBook() {
   var detailArray = dataArray.docs;
   console.log(dataArray);
   if (detailArray.length > 0) {
-    //document.getElementById("loading").style.display = "none";
     document.getElementsByClassName("table")[0].style.display = "block";
     document.getElementById(
       "showCount"
     ).innerHTML = `<p>Showing <b>${detailArray.length}</b> results for <b>"${userInput.value}"</b></p>`;
-    //console.log("publish year:" + detailArray[0].isbn);
     for (let i = 0; i < detailArray.length; i++) {
       if (detailArray[i].language) {
         if (detailArray[i].language[0]) {
